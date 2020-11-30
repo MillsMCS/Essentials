@@ -840,6 +840,24 @@ public class FakeServer implements Server {
             public void sendRawMessage(String message) {
                 throw new UnsupportedOperationException("Not supported yet.");
             }
+
+			@Override
+			public void sendMessage(UUID arg0, String arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void sendMessage(UUID arg0, String[] arg1) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void sendRawMessage(UUID arg0, String arg1) {
+				// TODO Auto-generated method stub
+				
+			}
         };
     }
 

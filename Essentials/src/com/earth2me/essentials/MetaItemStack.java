@@ -290,10 +290,13 @@ public class MetaItemStack {
 
                 List<Color> primaryColors = new ArrayList<>();
                 String[] colors = split[1].split(",");
+
                 for (String color : colors) {
                     if (colorMap.containsKey(color.toUpperCase())) {
                         validFirework = true;
                         primaryColors.add(colorMap.get(color.toUpperCase()).getFireworkColor());
+                    } else if ((color.substring(color.indexOf("[") + 1, color.indexOf("0"))).equalsIgnoreCase("rgb")) {
+                        primaryColors.add(Color.fromRGB(Integer.decode(color.substring(color.indexOf("[") + 4, color.indexOf("]") - 1))));
                     } else {
                         throw new Exception(tl("invalidFireworkFormat", split[1], split[0]));
                     }
@@ -316,6 +319,8 @@ public class MetaItemStack {
                 for (String color : colors) {
                     if (colorMap.containsKey(color.toUpperCase())) {
                         fadeColors.add(colorMap.get(color.toUpperCase()).getFireworkColor());
+                    }  else if ((color.substring(color.indexOf("[") + 1, color.indexOf("0"))).equalsIgnoreCase("rgb")) {
+                        fadeColors.add(Color.fromRGB(Integer.decode(color.substring(color.indexOf("[") + 4, color.indexOf("]") - 1))));
                     } else {
                         throw new Exception(tl("invalidFireworkFormat", split[1], split[0]));
                     }
