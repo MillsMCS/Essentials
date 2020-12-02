@@ -28,7 +28,6 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import static com.earth2me.essentials.I18n.tl;
 
