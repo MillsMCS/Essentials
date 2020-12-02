@@ -28,6 +28,7 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import static com.earth2me.essentials.I18n.tl;
 
@@ -343,14 +344,11 @@ public class MetaItemStack {
     }
 
     private Color getColorFromRgbHexString(String color) {
-        Color c;
         try {
-            c = Color.fromRGB(Integer.decode(color.substring(color.indexOf('[') + 4, color.indexOf(']') - 1)));
-        } catch (Exception e) {
-            c = null;
+            return Color.fromRGB(Integer.decode(color.substring(color.indexOf("[") + 4, color.indexOf("]") - 1)));
+        } catch (IllegalArgumentException e) {
+            return null;
         }
-
-        return c;
     }
 
     public void addPotionMeta(final CommandSource sender, final boolean allowShortName, final String string, final IEssentials ess) throws Exception {
