@@ -28,7 +28,6 @@ import java.lang.reflect.Method;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.regex.Pattern;
-import java.util.regex.Matcher;
 
 import static com.earth2me.essentials.I18n.tl;
 
@@ -47,7 +46,7 @@ public class MetaItemStack {
     }
 
     private final transient Pattern splitPattern = Pattern.compile("[:+',;.]");
-    private final Pattern hexStringPattern = Pattern.compile("^rgb0x[0-9a-fA-F]${2,6}");
+    private final transient Pattern hexStringPattern = Pattern.compile("^Color:\\[rgb0x[0-9a-fA-F]{2,6}\\]$");
     private ItemStack stack;
     private FireworkEffect.Builder builder = FireworkEffect.builder();
     private PotionEffectType pEffectType;
@@ -345,8 +344,7 @@ public class MetaItemStack {
     }
 
     private Color getColorFromRgbHexString(String color) {
-        Matcher hexStringMatcher = hexStringPattern.matcher(color);
-        if (hexStringMatcher.find()) {
+        if (hexStringPattern.matcher(color).find()) {
             return Color.fromRGB(Integer.decode(color.substring(color.indexOf("[") + 4, color.indexOf("]") - 1)));
         }
         return null;
