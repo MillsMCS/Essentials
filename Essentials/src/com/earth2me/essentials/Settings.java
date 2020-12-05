@@ -1,23 +1,6 @@
 package com.earth2me.essentials;
 
-import com.earth2me.essentials.api.IItemDb;
-import com.earth2me.essentials.commands.IEssentialsCommand;
-import com.earth2me.essentials.signs.EssentialsSign;
-import com.earth2me.essentials.signs.Signs;
-import com.earth2me.essentials.textreader.IText;
-import com.earth2me.essentials.textreader.SimpleTextInput;
-import com.earth2me.essentials.utils.EnumUtil;
-import com.earth2me.essentials.utils.FormatUtil;
-import com.earth2me.essentials.utils.LocationUtil;
-import com.earth2me.essentials.utils.NumberUtil;
-import net.ess3.api.IEssentials;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.MemoryConfiguration;
-import org.bukkit.event.EventPriority;
-import org.bukkit.inventory.ItemStack;
-
+import static com.earth2me.essentials.I18n.tl;
 import java.io.File;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -40,8 +23,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import static com.earth2me.essentials.I18n.tl;
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.MemoryConfiguration;
+import org.bukkit.event.EventPriority;
+import org.bukkit.inventory.ItemStack;
+import com.earth2me.essentials.api.IItemDb;
+import com.earth2me.essentials.commands.IEssentialsCommand;
+import com.earth2me.essentials.signs.EssentialsSign;
+import com.earth2me.essentials.signs.Signs;
+import com.earth2me.essentials.textreader.IText;
+import com.earth2me.essentials.textreader.SimpleTextInput;
+import com.earth2me.essentials.utils.EnumUtil;
+import com.earth2me.essentials.utils.FormatUtil;
+import com.earth2me.essentials.utils.LocationUtil;
+import com.earth2me.essentials.utils.NumberUtil;
+import net.ess3.api.IEssentials;
 
 public class Settings implements net.ess3.api.ISettings {
     private static final Logger logger = Logger.getLogger("Essentials");
@@ -120,7 +118,8 @@ public class Settings implements net.ess3.api.ISettings {
     private boolean teleportBackWhenFreedFromJail;
     private boolean isCompassTowardsHomePerm;
     private boolean isAllowWorldInBroadcastworld;
-    private String itemDbType; // #EasterEgg - admins can manually switch items provider if they want
+    private String itemDbType; // #EasterEgg - admins can manually switch items provider if they
+                               // want
     private boolean forceEnableRecipe; // https://github.com/EssentialsX/Essentials/issues/1397
     private boolean allowOldIdSigns;
     private boolean isWaterSafe;
@@ -168,7 +167,8 @@ public class Settings implements net.ess3.api.ISettings {
         final Set<String> homeList = getMultipleHomes();
         if (homeList != null) {
             for (final String set : homeList) {
-                if (user.isAuthorized("essentials.sethome.multiple." + set) && (limit < getHomeLimit(set))) {
+                if (user.isAuthorized("essentials.sethome.multiple." + set)
+                        && (limit < getHomeLimit(set))) {
                     limit = getHomeLimit(set);
                 }
             }
@@ -178,7 +178,33 @@ public class Settings implements net.ess3.api.ISettings {
 
     @Override
     public int getHomeLimit(final String set) {
-        return config.getInt("sethome-multiple." + set, config.getInt("sethome-multiple.default", 3));
+        return config.getInt("sethome-multiple." + set,
+                config.getInt("sethome-multiple.default", 3));
+    }
+
+    public Set<String> getAfkLimits() {
+        final ConfigurationSection section = config.getConfigurationSection("auto-afk-kick");
+        return section == null ? null : section.getKeys(false);
+    }
+
+    @Override
+    public long getAutoAfkKick(final User user) {
+        long limit = -1;
+        final Set<String> limitList = getAfkLimits();
+        if (limitList != null) {
+            for (String set : limitList) {
+                if (user.isAuthorized("essentials.auto-afk-kick" + set)
+                        && (limit < getHomeLimit(set))) {
+                    limit = getAutoAfkKick(set);
+                }
+            }
+        }
+        return limit;
+    }
+
+    @Override
+    public long getAutoAfkKick(final String set) {
+        return config.getLong("auto-afk-kick." + set, config.getLong("auto-afk-kick.default", -1));
     }
 
     private int _getChatRadius() {
@@ -322,19 +348,23 @@ public class Settings implements net.ess3.api.ISettings {
             final ConfigurationSection newSection = new MemoryConfiguration();
             for (final String command : section.getKeys(false)) {
                 if (command.charAt(0) == '/') {
-                    ess.getLogger().warning("Invalid command cost. '" + command + "' should not start with '/'.");
+                    ess.getLogger().warning(
+                            "Invalid command cost. '" + command + "' should not start with '/'.");
                 }
                 if (section.isDouble(command)) {
                     newSection.set(command.toLowerCase(Locale.ENGLISH), section.getDouble(command));
                 } else if (section.isInt(command)) {
-                    newSection.set(command.toLowerCase(Locale.ENGLISH), (double) section.getInt(command));
+                    newSection.set(command.toLowerCase(Locale.ENGLISH),
+                            (double) section.getInt(command));
                 } else if (section.isString(command)) {
                     final String costString = section.getString(command);
                     try {
-                        final double cost = Double.parseDouble(costString.trim().replace(getCurrencySymbol(), "").replaceAll("\\W", ""));
+                        final double cost = Double.parseDouble(costString.trim()
+                                .replace(getCurrencySymbol(), "").replaceAll("\\W", ""));
                         newSection.set(command.toLowerCase(Locale.ENGLISH), cost);
                     } catch (final NumberFormatException ex) {
-                        ess.getLogger().warning("Invalid command cost for: " + command + " (" + costString + ")");
+                        ess.getLogger().warning(
+                                "Invalid command cost for: " + command + " (" + costString + ")");
                     }
 
                 } else {
@@ -363,7 +393,9 @@ public class Settings implements net.ess3.api.ISettings {
                 socialspyCommands.add(c.toLowerCase(Locale.ENGLISH));
             }
         } else {
-            socialspyCommands.addAll(Arrays.asList("msg", "r", "mail", "m", "whisper", "emsg", "t", "tell", "er", "reply", "ereply", "email", "action", "describe", "eme", "eaction", "edescribe", "etell", "ewhisper", "pm"));
+            socialspyCommands.addAll(Arrays.asList("msg", "r", "mail", "m", "whisper", "emsg", "t",
+                    "tell", "er", "reply", "ereply", "email", "action", "describe", "eme",
+                    "eaction", "edescribe", "etell", "ewhisper", "pm"));
         }
 
         return socialspyCommands;
@@ -514,7 +546,8 @@ public class Settings implements net.ess3.api.ISettings {
     public String getChatFormat(final String group) {
         String mFormat = chatFormats.get(group);
         if (mFormat == null) {
-            mFormat = config.getString("chat.group-formats." + (group == null ? "Default" : group), config.getString("chat.format", "&7[{GROUP}]&r {DISPLAYNAME}&7:&r {MESSAGE}"));
+            mFormat = config.getString("chat.group-formats." + (group == null ? "Default" : group),
+                    config.getString("chat.format", "&7[{GROUP}]&r {DISPLAYNAME}&7:&r {MESSAGE}"));
             mFormat = FormatUtil.replaceFormat(mFormat);
             mFormat = mFormat.replace("{DISPLAYNAME}", "%1$s");
             mFormat = mFormat.replace("{MESSAGE}", "%2$s");
@@ -544,7 +577,8 @@ public class Settings implements net.ess3.api.ISettings {
 
     @Override
     public IText getAnnounceNewPlayerFormat() {
-        return new SimpleTextInput(FormatUtil.replaceFormat(config.getString("newbies.announce-format", "&dWelcome {DISPLAYNAME} to the server!")));
+        return new SimpleTextInput(FormatUtil.replaceFormat(config
+                .getString("newbies.announce-format", "&dWelcome {DISPLAYNAME} to the server!")));
     }
 
     @Override
@@ -565,7 +599,8 @@ public class Settings implements net.ess3.api.ISettings {
     @Override
     public Map<String, Object> getListGroupConfig() {
         if (config.isConfigurationSection("list")) {
-            final Map<String, Object> values = config.getConfigurationSection("list").getValues(false);
+            final Map<String, Object> values =
+                    config.getConfigurationSection("list").getValues(false);
             if (!values.isEmpty()) {
                 return values;
             }
@@ -677,7 +712,8 @@ public class Settings implements net.ess3.api.ISettings {
                 final ItemStack iStack = itemDb.get(itemName);
                 epItemSpwn.add(iStack.getType());
             } catch (final Exception ex) {
-                logger.log(Level.SEVERE, tl("unknownItemInList", itemName, "item-spawn-blacklist"), ex);
+                logger.log(Level.SEVERE, tl("unknownItemInList", itemName, "item-spawn-blacklist"),
+                        ex);
             }
         }
         return epItemSpwn;
@@ -751,11 +787,14 @@ public class Settings implements net.ess3.api.ISettings {
         return config.getString("locale", "");
     }
 
-    //This method should always only return one character due to the implementation of the calling methods
-    //If you need to use a string currency, for example "coins", use the translation key 'currency'.
+    // This method should always only return one character due to the implementation of the calling
+    // methods
+    // If you need to use a string currency, for example "coins", use the translation key
+    // 'currency'.
     @Override
     public String getCurrencySymbol() {
-        return config.getString("currency-symbol", "$").concat("$").substring(0, 1).replaceAll("[0-9]", "$");
+        return config.getString("currency-symbol", "$").concat("$").substring(0, 1)
+                .replaceAll("[0-9]", "$");
     }
 
     @Override
@@ -773,7 +812,8 @@ public class Settings implements net.ess3.api.ISettings {
     // #easteregg
     @Override
     public boolean isTradeInStacks(final Material type) {
-        return config.getBoolean("trade-in-stacks." + type.toString().toLowerCase().replace("_", ""), false);
+        return config.getBoolean(
+                "trade-in-stacks." + type.toString().toLowerCase().replace("_", ""), false);
     }
 
     public boolean _isEcoDisabled() {
@@ -942,10 +982,10 @@ public class Settings implements net.ess3.api.ISettings {
         return config.getLong("auto-afk", 300);
     }
 
-    @Override
-    public long getAutoAfkKick() {
-        return config.getLong("auto-afk-kick", -1);
-    }
+    // @Override
+    // public long getAutoAfkKick() {
+    // return config.getLong("auto-afk-kick", -1);
+    // }
 
     @Override
     public boolean getFreezeAfkPlayers() {
@@ -1012,7 +1052,8 @@ public class Settings implements net.ess3.api.ISettings {
     }
 
     public KeepInvPolicy _getVanishingItemsPolicy() {
-        final String value = config.getString("vanishing-items-policy", "keep").toLowerCase(Locale.ENGLISH);
+        final String value =
+                config.getString("vanishing-items-policy", "keep").toLowerCase(Locale.ENGLISH);
         try {
             return KeepInvPolicy.valueOf(value.toUpperCase(Locale.ENGLISH));
         } catch (final IllegalArgumentException e) {
@@ -1026,7 +1067,8 @@ public class Settings implements net.ess3.api.ISettings {
     }
 
     public KeepInvPolicy _getBindingItemsPolicy() {
-        final String value = config.getString("binding-items-policy", "keep").toLowerCase(Locale.ENGLISH);
+        final String value =
+                config.getString("binding-items-policy", "keep").toLowerCase(Locale.ENGLISH);
         try {
             return KeepInvPolicy.valueOf(value.toUpperCase(Locale.ENGLISH));
         } catch (final IllegalArgumentException e) {
@@ -1106,13 +1148,15 @@ public class Settings implements net.ess3.api.ISettings {
 
     @Override
     public EventPriority getRespawnPriority() {
-        final String priority = config.getString("respawn-listener-priority", "normal").toLowerCase(Locale.ENGLISH);
+        final String priority =
+                config.getString("respawn-listener-priority", "normal").toLowerCase(Locale.ENGLISH);
         return getPriority(priority);
     }
 
     @Override
     public EventPriority getSpawnJoinPriority() {
-        final String priority = config.getString("spawn-join-listener-priority", "normal").toLowerCase(Locale.ENGLISH);
+        final String priority = config.getString("spawn-join-listener-priority", "normal")
+                .toLowerCase(Locale.ENGLISH);
         return getPriority(priority);
     }
 
@@ -1333,8 +1377,10 @@ public class Settings implements net.ess3.api.ISettings {
         if (config.isSet("spawn-on-join")) {
             if (config.isList("spawn-on-join")) {
                 return new ArrayList<>(config.getStringList("spawn-on-join"));
-            } else if (config.isBoolean("spawn-on-join")) { // List of [*] to make all groups go to spawn on join.
-                // This also maintains backwards compatibility with initial impl of single boolean value.
+            } else if (config.isBoolean("spawn-on-join")) { // List of [*] to make all groups go to
+                                                            // spawn on join.
+                // This also maintains backwards compatibility with initial impl of single boolean
+                // value.
                 return config.getBoolean("spawn-on-join") ? Collections.singletonList("*") : def;
             }
             // Take whatever the value is, convert to string and add it to a list as a single value.
@@ -1374,9 +1420,9 @@ public class Settings implements net.ess3.api.ISettings {
         for (String cmdEntry : section.getKeys(false)) {
             Pattern pattern = null;
 
-            /* ================================
-             * >> Regex
-             * ================================ */
+            /*
+             * ================================ >> Regex ================================
+             */
             if (cmdEntry.startsWith("^")) {
                 try {
                     pattern = Pattern.compile(cmdEntry.substring(1));
@@ -1388,14 +1434,17 @@ public class Settings implements net.ess3.api.ISettings {
                 if (cmdEntry.startsWith("\\^")) {
                     cmdEntry = cmdEntry.substring(1);
                 }
-                final String cmd = cmdEntry
-                    .replaceAll("\\*", ".*"); // Wildcards are accepted as asterisk * as known universally.
-                pattern = Pattern.compile(cmd + "( .*)?"); // This matches arguments, if present, to "ignore" them from the feature.
+                final String cmd = cmdEntry.replaceAll("\\*", ".*"); // Wildcards are accepted as
+                                                                     // asterisk * as known
+                                                                     // universally.
+                pattern = Pattern.compile(cmd + "( .*)?"); // This matches arguments, if present, to
+                                                           // "ignore" them from the feature.
             }
 
-            /* ================================
-             * >> Process cooldown value
-             * ================================ */
+            /*
+             * ================================ >> Process cooldown value
+             * ================================
+             */
             Object value = section.get(cmdEntry);
             if (value instanceof String) {
                 try {
@@ -1404,12 +1453,14 @@ public class Settings implements net.ess3.api.ISettings {
                 }
             }
             if (!(value instanceof Number)) {
-                ess.getLogger().warning("Command cooldown error: '" + value + "' is not a valid cooldown");
+                ess.getLogger()
+                        .warning("Command cooldown error: '" + value + "' is not a valid cooldown");
                 continue;
             }
             final double cooldown = ((Number) value).doubleValue();
             if (cooldown < 1) {
-                ess.getLogger().warning("Command cooldown with very short " + cooldown + " cooldown.");
+                ess.getLogger()
+                        .warning("Command cooldown with very short " + cooldown + " cooldown.");
             }
 
             result.put(pattern, (long) cooldown * 1000); // convert to milliseconds
@@ -1435,7 +1486,9 @@ public class Settings implements net.ess3.api.ISettings {
                 // Check if label matches current pattern (command-cooldown in config)
                 final boolean matches = entry.getKey().matcher(label).matches();
                 if (isDebug()) {
-                    ess.getLogger().info(String.format("Checking command '%s' against cooldown '%s': %s", label, entry.getKey(), matches));
+                    ess.getLogger()
+                            .info(String.format("Checking command '%s' against cooldown '%s': %s",
+                                    label, entry.getKey(), matches));
                 }
 
                 if (matches) {
@@ -1467,16 +1520,19 @@ public class Settings implements net.ess3.api.ISettings {
         final String symbolLocaleString = config.getString("currency-symbol-format-locale");
         final DecimalFormatSymbols decimalFormatSymbols;
         if (symbolLocaleString != null) {
-            decimalFormatSymbols = DecimalFormatSymbols.getInstance(Locale.forLanguageTag(symbolLocaleString));
+            decimalFormatSymbols =
+                    DecimalFormatSymbols.getInstance(Locale.forLanguageTag(symbolLocaleString));
         } else {
             // Fallback to the JVM's default locale
             decimalFormatSymbols = DecimalFormatSymbols.getInstance(Locale.US);
         }
 
-        final DecimalFormat currencyFormat = new DecimalFormat(currencyFormatString, decimalFormatSymbols);
+        final DecimalFormat currencyFormat =
+                new DecimalFormat(currencyFormatString, decimalFormatSymbols);
         currencyFormat.setRoundingMode(RoundingMode.FLOOR);
 
-        // Updates NumberUtil#PRETTY_FORMAT field so that all of Essentials can follow a single format.
+        // Updates NumberUtil#PRETTY_FORMAT field so that all of Essentials can follow a single
+        // format.
         NumberUtil.internalSetPrettyFormat(currencyFormat);
         return currencyFormat;
     }
@@ -1502,7 +1558,8 @@ public class Settings implements net.ess3.api.ISettings {
             try {
                 newSigns.add(Signs.valueOf(signName).getSign());
             } catch (final Exception ex) {
-                logger.log(Level.SEVERE, tl("unknownItemInList", signName, "unprotected-sign-names"));
+                logger.log(Level.SEVERE,
+                        tl("unknownItemInList", signName, "unprotected-sign-names"));
             }
         }
         return newSigns;
