@@ -345,6 +345,21 @@ public class FakeWorld implements World {
     }
 
     @Override
+    public boolean isClearWeather() {
+        return false;
+    }
+
+    @Override
+    public void setClearWeatherDuration(int duration) {
+
+    }
+
+    @Override
+    public int getClearWeatherDuration() {
+        return 0;
+    }
+
+    @Override
     public Environment getEnvironment() {
         return env;
     }
