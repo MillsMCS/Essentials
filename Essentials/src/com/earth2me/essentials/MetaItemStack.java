@@ -331,7 +331,7 @@ public class MetaItemStack {
                         validFirework = true;
                         primaryColors.add(colorMap.get(color.toUpperCase()).getFireworkColor());
                     } else {
-                        Color c = getColorFromRgbHexString(color);
+                        final Color c = getColorFromRgbHexString(color);
                         if (c == null) {
                             throw new Exception(tl("invalidFireworkFormat", split[1], split[0]));
                         }
@@ -357,7 +357,7 @@ public class MetaItemStack {
                     if (colorMap.containsKey(color.toUpperCase())) {
                         fadeColors.add(colorMap.get(color.toUpperCase()).getFireworkColor());
                     } else {
-                        Color c = getColorFromRgbHexString(color);
+                        final Color c = getColorFromRgbHexString(color);
                         if (c == null) {
                             throw new Exception(tl("invalidFireworkFormat", split[1], split[0]));
                         }
@@ -383,7 +383,7 @@ public class MetaItemStack {
     }
 
     private Color getColorFromRgbHexString(String color) {
-        Matcher hexStringMatcher = hexStringPattern.matcher(color);
+        final Matcher hexStringMatcher = hexStringPattern.matcher(color);
         if (hexStringMatcher.find()) {
             return Color.fromRGB(Integer.decode(hexStringMatcher.group()
                     .substring(color.indexOf("[") + 4, color.indexOf("]"))));
