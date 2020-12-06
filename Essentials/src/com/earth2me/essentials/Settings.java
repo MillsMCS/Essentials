@@ -193,7 +193,7 @@ public class Settings implements net.ess3.api.ISettings {
         final Set<String> limitList = getAfkLimits();
         if (limitList != null) {
             for (String set : limitList) {
-                if (user.isAuthorized("essentials.auto-afk-kick" + set)) {
+                if (user.isAuthorized("essentials.auto-afk-kick." + set)) {
                     limit = getAutoAfkKick(set);
                 }
             }
