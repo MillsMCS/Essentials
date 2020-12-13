@@ -1,5 +1,12 @@
 package com.earth2me.essentials.craftbukkit;
 
+import java.io.File;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.UUID;
+import java.util.function.Predicate;
 import org.bukkit.BlockChangeDelegate;
 import org.bukkit.Chunk;
 import org.bukkit.ChunkSnapshot;
@@ -41,14 +48,6 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.util.BoundingBox;
 import org.bukkit.util.RayTraceResult;
 import org.bukkit.util.Vector;
-
-import java.io.File;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
-import java.util.function.Predicate;
 
 public class FakeWorld implements World {
     private final String name;
@@ -139,7 +138,7 @@ public class FakeWorld implements World {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    //@Override
+    // @Override
     public boolean unloadChunk(final int i, final int i1, final boolean bln, final boolean bln1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -149,7 +148,7 @@ public class FakeWorld implements World {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    //@Override
+    // @Override
     public boolean unloadChunkRequest(final int i, final int i1, final boolean bln) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
@@ -215,12 +214,14 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public Arrow spawnArrow(final Location lctn, final Vector vector, final float f, final float f1) {
+    public Arrow spawnArrow(final Location lctn, final Vector vector, final float f,
+            final float f1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T extends AbstractArrow> T spawnArrow(final Location location, final Vector vector, final float v, final float v1, final Class<T> aClass) {
+    public <T extends AbstractArrow> T spawnArrow(final Location location, final Vector vector,
+            final float v, final float v1, final Class<T> aClass) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -230,7 +231,8 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public boolean generateTree(final Location loc, final TreeType type, final BlockChangeDelegate delegate) {
+    public boolean generateTree(final Location loc, final TreeType type,
+            final BlockChangeDelegate delegate) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -370,7 +372,8 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public boolean createExplosion(final double d, final double d1, final double d2, final float f) {
+    public boolean createExplosion(final double d, final double d1, final double d2,
+            final float f) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -400,7 +403,8 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public boolean createExplosion(final double d, final double d1, final double d2, final float f, final boolean bln) {
+    public boolean createExplosion(final double d, final double d1, final double d2, final float f,
+            final boolean bln) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -410,37 +414,44 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public boolean createExplosion(final Location location, final float v, final boolean b, final boolean b1) {
+    public boolean createExplosion(final Location location, final float v, final boolean b,
+            final boolean b1) {
         return false;
     }
 
     @Override
-    public boolean createExplosion(final Location location, final float v, final boolean b, final boolean b1, final Entity entity) {
+    public boolean createExplosion(final Location location, final float v, final boolean b,
+            final boolean b1, final Entity entity) {
         return false;
     }
 
     @Override
-    public <T extends Entity> T spawn(final Location lctn, final Class<T> type) throws IllegalArgumentException {
+    public <T extends Entity> T spawn(final Location lctn, final Class<T> type)
+            throws IllegalArgumentException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T extends Entity> T spawn(final Location location, final Class<T> aClass, final org.bukkit.util.Consumer<T> consumer) throws IllegalArgumentException {
+    public <T extends Entity> T spawn(final Location location, final Class<T> aClass,
+            final org.bukkit.util.Consumer<T> consumer) throws IllegalArgumentException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public FallingBlock spawnFallingBlock(final Location location, final MaterialData materialData) throws IllegalArgumentException {
+    public FallingBlock spawnFallingBlock(final Location location, final MaterialData materialData)
+            throws IllegalArgumentException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public FallingBlock spawnFallingBlock(final Location location, final BlockData blockData) throws IllegalArgumentException {
+    public FallingBlock spawnFallingBlock(final Location location, final BlockData blockData)
+            throws IllegalArgumentException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public ChunkSnapshot getEmptyChunkSnapshot(final int i, final int i1, final boolean bln, final boolean bln1) {
+    public ChunkSnapshot getEmptyChunkSnapshot(final int i, final int i1, final boolean bln,
+            final boolean bln1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -760,12 +771,14 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public FallingBlock spawnFallingBlock(final Location location, final Material material, final byte data) throws IllegalArgumentException {
+    public FallingBlock spawnFallingBlock(final Location location, final Material material,
+            final byte data) throws IllegalArgumentException {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void playSound(final Location arg0, final Sound arg1, final float arg2, final float arg3) {
+    public void playSound(final Location arg0, final Sound arg1, final float arg2,
+            final float arg3) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -775,12 +788,14 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public void playSound(final Location location, final Sound sound, final SoundCategory soundCategory, final float v, final float v1) {
+    public void playSound(final Location location, final Sound sound,
+            final SoundCategory soundCategory, final float v, final float v1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void playSound(final Location location, final String s, final SoundCategory soundCategory, final float v, final float v1) {
+    public void playSound(final Location location, final String s,
+            final SoundCategory soundCategory, final float v, final float v1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -815,12 +830,14 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public boolean createExplosion(final double d, final double d1, final double d2, final float f, final boolean bln, final boolean bln1) {
+    public boolean createExplosion(final double d, final double d1, final double d2, final float f,
+            final boolean bln, final boolean bln1) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public boolean createExplosion(final double v, final double v1, final double v2, final float v3, final boolean b, final boolean b1, final Entity entity) {
+    public boolean createExplosion(final double v, final double v1, final double v2, final float v3,
+            final boolean b, final boolean b1, final Entity entity) {
         return false;
     }
 
@@ -835,72 +852,91 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i) {
+    public void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final Location location, final int i, final T t) {
+    public <T> void spawnParticle(final Particle particle, final Location location, final int i,
+            final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final T t) {
+    public <T> void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void spawnParticle(final Particle particle, final Location location, final int i, final double v, final double v1, final double v2) {
+    public void spawnParticle(final Particle particle, final Location location, final int i,
+            final double v, final double v1, final double v2) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final double v3, final double v4, final double v5) {
+    public void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final double v3, final double v4, final double v5) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final Location location, final int i, final double v, final double v1, final double v2, final T t) {
+    public <T> void spawnParticle(final Particle particle, final Location location, final int i,
+            final double v, final double v1, final double v2, final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final double v3, final double v4, final double v5, final T t) {
+    public <T> void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final double v3, final double v4, final double v5,
+            final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void spawnParticle(final Particle particle, final Location location, final int i, final double v, final double v1, final double v2, final double v3) {
+    public void spawnParticle(final Particle particle, final Location location, final int i,
+            final double v, final double v1, final double v2, final double v3) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final double v3, final double v4, final double v5, final double v6) {
+    public void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final double v3, final double v4, final double v5,
+            final double v6) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final Location location, final int i, final double v, final double v1, final double v2, final double v3, final T t) {
+    public <T> void spawnParticle(final Particle particle, final Location location, final int i,
+            final double v, final double v1, final double v2, final double v3, final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final double v3, final double v4, final double v5, final double v6, final T t) {
+    public <T> void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final double v3, final double v4, final double v5,
+            final double v6, final T t) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final Location location, final int i, final double v, final double v1, final double v2, final double v3, final T t, final boolean b) {
+    public <T> void spawnParticle(final Particle particle, final Location location, final int i,
+            final double v, final double v1, final double v2, final double v3, final T t,
+            final boolean b) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public <T> void spawnParticle(final Particle particle, final double v, final double v1, final double v2, final int i, final double v3, final double v4, final double v5, final double v6, final T t, final boolean b) {
+    public <T> void spawnParticle(final Particle particle, final double v, final double v1,
+            final double v2, final int i, final double v3, final double v4, final double v5,
+            final double v6, final T t, final boolean b) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Location locateNearestStructure(final Location origin, final StructureType structureType, final int radius, final boolean findUnexplored) {
+    public Location locateNearestStructure(final Location origin, final StructureType structureType,
+            final int radius, final boolean findUnexplored) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -930,12 +966,14 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public List<Entity> getNearbyEntities(final Location loc, final double x, final double y, final double z) {
+    public List<Entity> getNearbyEntities(final Location loc, final double x, final double y,
+            final double z) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
-    public Collection<Entity> getNearbyEntities(final Location location, final double v, final double v1, final double v2, final Predicate<Entity> predicate) {
+    public Collection<Entity> getNearbyEntities(final Location location, final double v,
+            final double v1, final double v2, final Predicate<Entity> predicate) {
         return null;
     }
 
@@ -945,47 +983,57 @@ public class FakeWorld implements World {
     }
 
     @Override
-    public Collection<Entity> getNearbyEntities(final BoundingBox boundingBox, final Predicate<Entity> predicate) {
+    public Collection<Entity> getNearbyEntities(final BoundingBox boundingBox,
+            final Predicate<Entity> predicate) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceEntities(final Location location, final Vector vector, final double v) {
+    public RayTraceResult rayTraceEntities(final Location location, final Vector vector,
+            final double v) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceEntities(final Location location, final Vector vector, final double v, final double v1) {
+    public RayTraceResult rayTraceEntities(final Location location, final Vector vector,
+            final double v, final double v1) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceEntities(final Location location, final Vector vector, final double v, final Predicate<Entity> predicate) {
+    public RayTraceResult rayTraceEntities(final Location location, final Vector vector,
+            final double v, final Predicate<Entity> predicate) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceEntities(final Location location, final Vector vector, final double v, final double v1, final Predicate<Entity> predicate) {
+    public RayTraceResult rayTraceEntities(final Location location, final Vector vector,
+            final double v, final double v1, final Predicate<Entity> predicate) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector, final double v) {
+    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector,
+            final double v) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector, final double v, final FluidCollisionMode fluidCollisionMode) {
+    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector,
+            final double v, final FluidCollisionMode fluidCollisionMode) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector, final double v, final FluidCollisionMode fluidCollisionMode, final boolean b) {
+    public RayTraceResult rayTraceBlocks(final Location location, final Vector vector,
+            final double v, final FluidCollisionMode fluidCollisionMode, final boolean b) {
         return null;
     }
 
     @Override
-    public RayTraceResult rayTrace(final Location location, final Vector vector, final double v, final FluidCollisionMode fluidCollisionMode, final boolean b, final double v1, final Predicate<Entity> predicate) {
+    public RayTraceResult rayTrace(final Location location, final Vector vector, final double v,
+            final FluidCollisionMode fluidCollisionMode, final boolean b, final double v1,
+            final Predicate<Entity> predicate) {
         return null;
     }
 
@@ -1002,5 +1050,23 @@ public class FakeWorld implements World {
     @Override
     public <T> boolean setGameRule(final GameRule<T> arg0, final T arg1) {
         throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int getClearWeatherDuration() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
+    @Override
+    public boolean isClearWeather() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
+    public void setClearWeatherDuration(int arg0) {
+        // TODO Auto-generated method stub
+
     }
 }
