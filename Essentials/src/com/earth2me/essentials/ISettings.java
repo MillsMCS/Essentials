@@ -16,372 +16,372 @@ import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
 public interface ISettings extends IConf {
-    boolean areSignsDisabled();
+     boolean areSignsDisabled();
 
-    IText getAnnounceNewPlayerFormat();
+     IText getAnnounceNewPlayerFormat();
 
-    boolean getAnnounceNewPlayers();
+     boolean getAnnounceNewPlayers();
 
-    String getNewPlayerKit();
+     String getNewPlayerKit();
 
-    String getBackupCommand();
+     String getBackupCommand();
 
-    long getBackupInterval();
+     long getBackupInterval();
 
-    boolean isAlwaysRunBackup();
+     boolean isAlwaysRunBackup();
 
-    String getChatFormat(String group);
+     String getChatFormat(String group);
 
-    int getChatRadius();
+     int getChatRadius();
 
-    int getNearRadius();
+     int getNearRadius();
 
-    char getChatShout();
+     char getChatShout();
 
-    char getChatQuestion();
+     char getChatQuestion();
 
-    BigDecimal getCommandCost(IEssentialsCommand cmd);
+     BigDecimal getCommandCost(IEssentialsCommand cmd);
 
-    BigDecimal getCommandCost(String label);
+     BigDecimal getCommandCost(String label);
 
-    String getCurrencySymbol();
+     String getCurrencySymbol();
 
-    boolean isCurrencySymbolSuffixed();
+     boolean isCurrencySymbolSuffixed();
 
-    int getOversizedStackSize();
+     int getOversizedStackSize();
 
-    int getDefaultStackSize();
+     int getDefaultStackSize();
 
-    double getHealCooldown();
+     double getHealCooldown();
 
-    Set<String> getSocialSpyCommands();
+     Set<String> getSocialSpyCommands();
 
-    boolean getSocialSpyListenMutedPlayers();
+     boolean getSocialSpyListenMutedPlayers();
 
-    Set<String> getMuteCommands();
+     Set<String> getMuteCommands();
 
-    /**
-     * @Deprecated in favor of {@link Kits#getKits()}
-     */
-    @Deprecated
-    ConfigurationSection getKits();
+     /**
+      * @Deprecated in favor of {@link Kits#getKits()}
+      */
+     @Deprecated
+     ConfigurationSection getKits();
 
-    /**
-     * @Deprecated in favor of {@link Kits#getKit(String)}
-     */
-    @Deprecated
-    Map<String, Object> getKit(String kit);
+     /**
+      * @Deprecated in favor of {@link Kits#getKit(String)}
+      */
+     @Deprecated
+     Map<String, Object> getKit(String kit);
 
-    /**
-     * @Deprecated in favor of {@link Kits#addKit(String, List, long)}}
-     */
-    @Deprecated
-    void addKit(String name, List<String> lines, long delay);
+     /**
+      * @Deprecated in favor of {@link Kits#addKit(String, List, long)}}
+      */
+     @Deprecated
+     void addKit(String name, List<String> lines, long delay);
 
-    @Deprecated
-    ConfigurationSection getKitSection();
+     @Deprecated
+     ConfigurationSection getKitSection();
 
-    boolean isSkippingUsedOneTimeKitsFromKitList();
+     boolean isSkippingUsedOneTimeKitsFromKitList();
 
-    String getLocale();
+     String getLocale();
 
-    String getNewbieSpawn();
+     String getNewbieSpawn();
 
-    String getNicknamePrefix();
+     String getNicknamePrefix();
 
-    String getOperatorColor() throws Exception;
+     String getOperatorColor() throws Exception;
 
-    boolean getPerWarpPermission();
+     boolean getPerWarpPermission();
 
-    boolean getProtectBoolean(final String configName, boolean def);
+     boolean getProtectBoolean(final String configName, boolean def);
 
-    int getProtectCreeperMaxHeight();
+     int getProtectCreeperMaxHeight();
 
-    List<Material> getProtectList(final String configName);
+     List<Material> getProtectList(final String configName);
 
-    boolean getProtectPreventSpawn(final String creatureName);
+     boolean getProtectPreventSpawn(final String creatureName);
 
-    String getProtectString(final String configName);
+     String getProtectString(final String configName);
 
-    boolean getRespawnAtHome();
+     boolean getRespawnAtHome();
 
-    boolean isRespawnAtAnchor();
+     boolean isRespawnAtAnchor();
 
-    Set getMultipleHomes();
+     Set getMultipleHomes();
 
-    int getHomeLimit(String set);
+     int getHomeLimit(String set);
 
-    int getHomeLimit(User user);
+     int getHomeLimit(User user);
 
-    int getSpawnMobLimit();
+     int getSpawnMobLimit();
 
-    BigDecimal getStartingBalance();
+     BigDecimal getStartingBalance();
 
-    boolean isTeleportSafetyEnabled();
+     boolean isTeleportSafetyEnabled();
 
-    boolean isForceDisableTeleportSafety();
+     boolean isForceDisableTeleportSafety();
 
-    boolean isAlwaysTeleportSafety();
+     boolean isAlwaysTeleportSafety();
 
-    boolean isTeleportPassengerDismount();
+     boolean isTeleportPassengerDismount();
 
-    boolean isForcePassengerTeleport();
+     boolean isForcePassengerTeleport();
 
-    double getTeleportCooldown();
+     double getTeleportCooldown();
 
-    double getTeleportDelay();
+     double getTeleportDelay();
 
-    boolean hidePermissionlessHelp();
+     boolean hidePermissionlessHelp();
 
-    boolean isCommandDisabled(final IEssentialsCommand cmd);
+     boolean isCommandDisabled(final IEssentialsCommand cmd);
 
-    boolean isCommandDisabled(String label);
+     boolean isCommandDisabled(String label);
 
-    boolean isCommandOverridden(String name);
+     boolean isCommandOverridden(String name);
 
-    boolean isDebug();
+     boolean isDebug();
 
-    void setDebug(boolean debug);
+     void setDebug(boolean debug);
 
-    boolean isEcoDisabled();
+     boolean isEcoDisabled();
 
-    @Deprecated
-    boolean isTradeInStacks(int id);
+     @Deprecated
+     boolean isTradeInStacks(int id);
 
-    boolean isTradeInStacks(Material type);
+     boolean isTradeInStacks(Material type);
 
-    List<Material> itemSpawnBlacklist();
+     List<Material> itemSpawnBlacklist();
 
-    List<EssentialsSign> enabledSigns();
+     List<EssentialsSign> enabledSigns();
 
-    boolean permissionBasedItemSpawn();
+     boolean permissionBasedItemSpawn();
 
-    boolean showNonEssCommandsInHelp();
+     boolean showNonEssCommandsInHelp();
 
-    boolean warnOnBuildDisallow();
+     boolean warnOnBuildDisallow();
 
-    boolean warnOnSmite();
+     boolean warnOnSmite();
 
-    BigDecimal getMaxMoney();
+     BigDecimal getMaxMoney();
 
-    BigDecimal getMinMoney();
+     BigDecimal getMinMoney();
 
-    boolean isEcoLogEnabled();
+     boolean isEcoLogEnabled();
 
-    boolean isEcoLogUpdateEnabled();
+     boolean isEcoLogUpdateEnabled();
 
-    boolean realNamesOnList();
+     boolean realNamesOnList();
 
-    boolean removeGodOnDisconnect();
+     boolean removeGodOnDisconnect();
 
-    boolean changeDisplayName();
+     boolean changeDisplayName();
 
-    boolean changePlayerListName();
+     boolean changePlayerListName();
 
-    boolean isPlayerCommand(String string);
+     boolean isPlayerCommand(String string);
 
-    boolean useBukkitPermissions();
+     boolean useBukkitPermissions();
 
-    boolean addPrefixSuffix();
+     boolean addPrefixSuffix();
 
-    boolean disablePrefix();
+     boolean disablePrefix();
 
-    boolean disableSuffix();
+     boolean disableSuffix();
 
-    long getAutoAfk();
+     long getAutoAfk();
 
-    long getAutoAfkKick(User user);
+     long getAutoAfkKick(User user);
 
-    long getAutoAfkKick(String set);
+     long getAutoAfkKick(String set);
 
-    Set getAfkLimits();
+     Set getAfkLimits();
 
-    boolean getFreezeAfkPlayers();
+     boolean getFreezeAfkPlayers();
 
-    boolean cancelAfkOnMove();
+     boolean cancelAfkOnMove();
 
-    boolean cancelAfkOnInteract();
+     boolean cancelAfkOnInteract();
 
-    boolean sleepIgnoresAfkPlayers();
+     boolean sleepIgnoresAfkPlayers();
 
-    boolean isAfkListName();
+     boolean isAfkListName();
 
-    String getAfkListName();
+     String getAfkListName();
 
-    boolean broadcastAfkMessage();
+     boolean broadcastAfkMessage();
 
-    boolean areDeathMessagesEnabled();
+     boolean areDeathMessagesEnabled();
 
-    KeepInvPolicy getVanishingItemsPolicy();
+     KeepInvPolicy getVanishingItemsPolicy();
 
-    KeepInvPolicy getBindingItemsPolicy();
+     KeepInvPolicy getBindingItemsPolicy();
 
-    int getJoinQuitMessagePlayerCount();
+     int getJoinQuitMessagePlayerCount();
 
-    boolean hasJoinQuitMessagePlayerCount();
+     boolean hasJoinQuitMessagePlayerCount();
 
-    Set<String> getNoGodWorlds();
+     Set<String> getNoGodWorlds();
 
-    boolean getUpdateBedAtDaytime();
+     boolean getUpdateBedAtDaytime();
 
-    boolean allowUnsafeEnchantments();
+     boolean allowUnsafeEnchantments();
 
-    boolean getRepairEnchanted();
+     boolean getRepairEnchanted();
 
-    boolean isWorldTeleportPermissions();
+     boolean isWorldTeleportPermissions();
 
-    boolean isWorldHomePermissions();
+     boolean isWorldHomePermissions();
 
-    boolean registerBackInListener();
+     boolean registerBackInListener();
 
-    boolean getDisableItemPickupWhileAfk();
+     boolean getDisableItemPickupWhileAfk();
 
-    EventPriority getRespawnPriority();
+     EventPriority getRespawnPriority();
 
-    EventPriority getSpawnJoinPriority();
+     EventPriority getSpawnJoinPriority();
 
-    long getTpaAcceptCancellation();
+     long getTpaAcceptCancellation();
 
-    long getTeleportInvulnerability();
+     long getTeleportInvulnerability();
 
-    boolean isTeleportInvulnerability();
+     boolean isTeleportInvulnerability();
 
-    long getLoginAttackDelay();
+     long getLoginAttackDelay();
 
-    int getSignUsePerSecond();
+     int getSignUsePerSecond();
 
-    double getMaxFlySpeed();
+     double getMaxFlySpeed();
 
-    double getMaxWalkSpeed();
+     double getMaxWalkSpeed();
 
-    int getMailsPerMinute();
+     int getMailsPerMinute();
 
-    long getEconomyLagWarning();
+     long getEconomyLagWarning();
 
-    long getPermissionsLagWarning();
+     long getPermissionsLagWarning();
 
-    void setEssentialsChatActive(boolean b);
+     void setEssentialsChatActive(boolean b);
 
-    long getMaxMute();
+     long getMaxMute();
 
-    long getMaxTempban();
+     long getMaxTempban();
 
-    Map<String, Object> getListGroupConfig();
+     Map<String, Object> getListGroupConfig();
 
-    int getMaxNickLength();
+     int getMaxNickLength();
 
-    boolean ignoreColorsInMaxLength();
+     boolean ignoreColorsInMaxLength();
 
-    boolean hideDisplayNameInVanish();
+     boolean hideDisplayNameInVanish();
 
-    int getMaxUserCacheCount();
+     int getMaxUserCacheCount();
 
-    boolean allowSilentJoinQuit();
+     boolean allowSilentJoinQuit();
 
-    boolean isCustomJoinMessage();
+     boolean isCustomJoinMessage();
 
-    String getCustomJoinMessage();
+     String getCustomJoinMessage();
 
-    boolean isCustomQuitMessage();
+     boolean isCustomQuitMessage();
 
-    String getCustomQuitMessage();
+     String getCustomQuitMessage();
 
-    boolean isNotifyNoNewMail();
+     boolean isNotifyNoNewMail();
 
-    boolean isDropItemsIfFull();
+     boolean isDropItemsIfFull();
 
-    boolean isLastMessageReplyRecipient();
+     boolean isLastMessageReplyRecipient();
 
-    BigDecimal getMinimumPayAmount();
+     BigDecimal getMinimumPayAmount();
 
-    boolean isPayExcludesIgnoreList();
+     boolean isPayExcludesIgnoreList();
 
-    long getLastMessageReplyRecipientTimeout();
+     long getLastMessageReplyRecipientTimeout();
 
-    boolean isMilkBucketEasterEggEnabled();
+     boolean isMilkBucketEasterEggEnabled();
 
-    boolean isSendFlyEnableOnJoin();
+     boolean isSendFlyEnableOnJoin();
 
-    boolean isWorldTimePermissions();
+     boolean isWorldTimePermissions();
 
-    boolean isSpawnOnJoin();
+     boolean isSpawnOnJoin();
 
-    List<String> getSpawnOnJoinGroups();
+     List<String> getSpawnOnJoinGroups();
 
-    boolean isUserInSpawnOnJoinGroup(IUser user);
+     boolean isUserInSpawnOnJoinGroup(IUser user);
 
-    boolean isTeleportToCenterLocation();
+     boolean isTeleportToCenterLocation();
 
-    boolean isCommandCooldownsEnabled();
+     boolean isCommandCooldownsEnabled();
 
-    boolean isWorldChangeFlyResetEnabled();
+     boolean isWorldChangeFlyResetEnabled();
 
-    boolean isWorldChangeSpeedResetEnabled();
+     boolean isWorldChangeSpeedResetEnabled();
 
-    long getCommandCooldownMs(String label);
+     long getCommandCooldownMs(String label);
 
-    Entry<Pattern, Long> getCommandCooldownEntry(String label);
+     Entry<Pattern, Long> getCommandCooldownEntry(String label);
 
-    boolean isCommandCooldownPersistent(String label);
+     boolean isCommandCooldownPersistent(String label);
 
-    boolean isNpcsInBalanceRanking();
+     boolean isNpcsInBalanceRanking();
 
-    NumberFormat getCurrencyFormat();
+     NumberFormat getCurrencyFormat();
 
-    List<EssentialsSign> getUnprotectedSignNames();
+     List<EssentialsSign> getUnprotectedSignNames();
 
-    boolean isPastebinCreateKit();
+     boolean isPastebinCreateKit();
 
-    boolean isAllowBulkBuySell();
+     boolean isAllowBulkBuySell();
 
-    boolean isAllowSellNamedItems();
+     boolean isAllowSellNamedItems();
 
-    boolean isAddingPrefixInPlayerlist();
+     boolean isAddingPrefixInPlayerlist();
 
-    boolean isAddingSuffixInPlayerlist();
+     boolean isAddingSuffixInPlayerlist();
 
-    int getNotifyPlayerOfMailCooldown();
+     int getNotifyPlayerOfMailCooldown();
 
-    int getMotdDelay();
+     int getMotdDelay();
 
-    boolean isDirectHatAllowed();
+     boolean isDirectHatAllowed();
 
-    List<String> getDefaultEnabledConfirmCommands();
+     List<String> getDefaultEnabledConfirmCommands();
 
-    boolean isConfirmCommandEnabledByDefault(String commandName);
+     boolean isConfirmCommandEnabledByDefault(String commandName);
 
-    boolean isTeleportBackWhenFreedFromJail();
+     boolean isTeleportBackWhenFreedFromJail();
 
-    boolean isCompassTowardsHomePerm();
+     boolean isCompassTowardsHomePerm();
 
-    boolean isAllowWorldInBroadcastworld();
+     boolean isAllowWorldInBroadcastworld();
 
-    String getItemDbType();
+     String getItemDbType();
 
-    boolean allowOldIdSigns();
+     boolean allowOldIdSigns();
 
-    boolean isWaterSafe();
+     boolean isWaterSafe();
 
-    boolean isSafeUsermap();
+     boolean isSafeUsermap();
 
-    boolean logCommandBlockCommands();
+     boolean logCommandBlockCommands();
 
-    Set<Predicate<String>> getNickBlacklist();
+     Set<Predicate<String>> getNickBlacklist();
 
-    double getMaxProjectileSpeed();
+     double getMaxProjectileSpeed();
 
-    boolean isRemovingEffectsOnHeal();
+     boolean isRemovingEffectsOnHeal();
 
-    boolean isSpawnIfNoHome();
+     boolean isSpawnIfNoHome();
 
-    boolean isConfirmHomeOverwrite();
+     boolean isConfirmHomeOverwrite();
 
-    boolean infoAfterDeath();
+     boolean infoAfterDeath();
 
-    enum KeepInvPolicy {
-	KEEP,
-	DELETE,
-	DROP
-    }
+     enum KeepInvPolicy {
+	  KEEP,
+	  DELETE,
+	  DROP
+     }
 
 }
